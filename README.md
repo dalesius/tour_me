@@ -1,16 +1,28 @@
-# tour_me
+# TourMe
 
-A new Flutter project.
+This project aims to solve the communication problems found in tourism between tour agencies and tour operators by offering a platform in which they can manage, control, allow or deny different interactions between each other.
 
-## Getting Started
+## Key features
 
-This project is a starting point for a Flutter application.
+This project is a starting point for a final MVP.
 
-A few resources to get you started if this is your first Flutter project:
+Those main features are:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+**For all**
+- Login
+- Register
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**For agencies**
+- Add operator
+- Create reservation
+- Cancel reservation
+- Calendar view by operator
+ 
+**For operators**
+- Add service
+- Calendar view with operations
+- Accept reservation request
+- Decline reservation request
+- Accept agency request
+- Decline agency request
+- Add manual reservation
