@@ -1,3 +1,4 @@
+import 'package:tour_me/Views/AgencyView.dart';
 import 'package:tour_me/Views/LandingView.dart';
 import 'package:tour_me/Views/LoginView.dart';
 import 'package:tour_me/Views/RegisterView.dart';
@@ -7,7 +8,8 @@ final yeet = Yeet(
   children: [
     Yeet(
       path: '/',
-      builder: (_, __) => LandingView(),
+      builder: (_, __) => AgencyView(),
+      // builder: (_, __) => LandingView(),
       children: [
         Yeet(
           path: '/login',

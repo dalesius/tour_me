@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yeet/yeet.dart';
 
+// TODO: Logged in ?? [OperatorView || AgencyView] : [LandingView]
 class LandingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
