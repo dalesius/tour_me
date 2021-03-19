@@ -1,5 +1,5 @@
 import 'package:tour_me/Views/AgencyView.dart';
-import 'package:tour_me/Views/LandingView.dart';
+// import 'package:tour_me/Views/LandingView.dart';
 import 'package:tour_me/Views/LoginView.dart';
 import 'package:tour_me/Views/RegisterView.dart';
 import 'package:yeet/yeet.dart';

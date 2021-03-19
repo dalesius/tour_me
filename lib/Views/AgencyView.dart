@@ -3,7 +3,6 @@
 // TODO: feat: Create Reservation
 // TODO: feat: CalendarView with operations (services)
 
-// TODO: Main Layout
 import 'package:flutter/material.dart';
 
 class AgencyView extends StatelessWidget {
