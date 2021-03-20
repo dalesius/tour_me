@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yeet/yeet.dart';
 
 class RegisterView extends StatelessWidget {
   @override
@@ -8,9 +7,7 @@ class RegisterView extends StatelessWidget {
       appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              context.yeet();
-            },
+            onPressed: () {},
           ),
           title: Text('Register')),
       body: Center(

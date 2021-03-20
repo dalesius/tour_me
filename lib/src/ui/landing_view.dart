@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yeet/yeet.dart';
 
 // TODO: Logged in ?? [OperatorView || AgencyView] : [LandingView]
 class LandingView extends StatelessWidget {
@@ -23,7 +22,7 @@ class LandingView extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () => context.yeet('/login'),
+                  onPressed: () {},
                   child: Text('Login'),
                 ),
               ),
@@ -31,7 +30,7 @@ class LandingView extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () => context.yeet('/register'),
+                  onPressed: () {},
                   child: Text('Register'),
                 ),
               ),

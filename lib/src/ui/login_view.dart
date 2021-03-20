@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yeet/yeet.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 class LoginView extends StatelessWidget {
   @override
@@ -8,9 +8,7 @@ class LoginView extends StatelessWidget {
       appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              context.yeet();
-            },
+            onPressed: () {},
           ),
           title: Text('Login')),
       body: Center(
@@ -23,13 +21,12 @@ class LoginView extends StatelessWidget {
   }
 }
 
-class LoginWidget extends StatelessWidget {
-  const LoginWidget({
-    Key? key,
-  }) : super(key: key);
-
+class LoginWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    var email = useTextEditingController();
+    var password = useTextEditingController();
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Form(

@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:tour_me/src/blocs/agency_view_bloc.dart';
+import 'package:tour_me/src/models/tour_operator_model.dart';
+
 // TODO: feat: Add operator
 // TODO: feat: Reservations (list, cancel)
 // TODO: feat: Create Reservation
 // TODO: feat: CalendarView with operations (services)
-
-import 'package:flutter/material.dart';
-
 class AgencyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,10 +17,23 @@ class AgencyView extends StatelessWidget {
   }
 }
 
-class AgencyViewBody extends StatelessWidget {
-  const AgencyViewBody({
-    Key? key,
-  }) : super(key: key);
+class AgencyViewBody extends StatefulWidget {
+  @override
+  _AgencyViewBodyState createState() => _AgencyViewBodyState();
+}
+
+class _AgencyViewBodyState extends State<AgencyViewBody> {
+  @override
+  void initState() {
+    super.initState();
+    agencyViewBloc.fetchTourOperators();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    agencyViewBloc.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,33 +51,41 @@ class AgencyViewBody extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: ListView(
-            children: [
-              ListTile(
-                leading: Text('08:00'),
-                title: Text('Pacific Coast Dive Center'),
-                trailing: Icon(Icons.info_outline),
-              ),
-              ListTile(
-                leading: Text('08:00'),
-                title: Text('Pacific Coast Dive Center'),
-                trailing: Icon(Icons.info_outline),
-              ),
-              ListTile(
-                leading: Text('08:00'),
-                title: Text('Pacific Coast Dive Center'),
-                trailing: Icon(Icons.info_outline),
-              ),
-              ListTile(
-                leading: Text('08:00'),
-                title: Text('Pacific Coast Dive Center'),
-                trailing: Icon(Icons.info_outline),
-              ),
-            ],
-          ),
-        )
+            child: StreamBuilder(
+          stream: agencyViewBloc.allTourOperators,
+          builder: (context, AsyncSnapshot<List<TourOperator>> snapshot) {
+            if (snapshot.hasData) {
+              return TourOperatorsList(tourOperators: snapshot.data!);
+            } else if (snapshot.hasError) {
+              Text(
+                'An error has ocurred while fetching data',
+                style: TextStyle(backgroundColor: Colors.red.shade600),
+              );
+            }
+            return Center(child: CircularProgressIndicator());
+          },
+        ))
       ],
     );
+  }
+}
+
+class TourOperatorsList extends StatelessWidget {
+  TourOperatorsList({required this.tourOperators});
+  final List<TourOperator> tourOperators;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+        children: tourOperators
+            .map(
+              (tourOperator) => ListTile(
+                leading: Text('ID: ${tourOperator.id}'),
+                title: Text(tourOperator.name),
+                trailing: Icon(Icons.info_outline),
+              ),
+            )
+            .toList());
   }
 }
 
