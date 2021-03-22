@@ -1,18 +1,14 @@
-import 'package:tour_me/src/models/tour_operator_model.dart';
-
-import '../mocks/mock_data.dart';
+import '../mocks/mock_data.dart' as MockData;
+import '../models/tour_operator_model.dart';
 
 class AgencyApiProvider {
-  Future<List<TourOperator>> fetchTourOperators() async {
+  Future<List<TourOperator>> fetchTourOperatorsByAgency(
+      {required int id}) async {
     print('Fetching tour operators...');
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(Duration(seconds: 4));
     print('Tour operators fetched...');
-    print({
-      mockTourOperators
-          .map((tourOperator) => TourOperator.fromJson(tourOperator))
-          .toList()
-    });
-    return mockTourOperators
+
+    return MockData.mockTourOperatorsByAgency
         .map((tourOperator) => TourOperator.fromJson(tourOperator))
         .toList();
   }

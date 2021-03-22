@@ -2,8 +2,25 @@ List<Map<String, dynamic>> mockAgencies = [
   {
     'id': 1,
     'name': 'Costa Rica Travel',
-    'tour_operators':
-        mockTourOperators.where((tourOperator) => tourOperator['id'] < 3),
+  },
+  {
+    'id': 2,
+    'name': 'Buddha Travel',
+  },
+];
+
+List<Map<String, dynamic>> mockTourOperatorsByAgency = [
+  {
+    'id': 1,
+    'name': 'Luquitas Surfing',
+  },
+  {
+    'id': 2,
+    'name': 'Pacific Coast Dive Center',
+  },
+  {
+    'id': 3,
+    'name': 'Crazy Monkey Adventure Tours',
   },
 ];
 
@@ -11,20 +28,22 @@ List<Map<String, dynamic>> mockTourOperators = [
   {
     'id': 1,
     'name': 'Luquitas Surfing',
-    'services': mockTourOperatorServices
-        .where((service) => service['tour_operator_id'] == 1),
   },
   {
     'id': 2,
     'name': 'Pacific Coast Dive Center',
-    'services': mockTourOperatorServices
-        .where((service) => service['tour_operator_id'] == 2),
   },
   {
     'id': 3,
     'name': 'Crazy Monkey Adventure Tours',
-    'services': mockTourOperatorServices
-        .where((service) => service['tour_operator_id'] == 3),
+  },
+  {
+    'id': 4,
+    'name': 'Parachute Adventures',
+  },
+  {
+    'id': 5,
+    'name': 'Crazy mountain rafting',
   },
 ];
 

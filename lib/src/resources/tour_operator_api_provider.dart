@@ -1,4 +1,4 @@
-import '../mocks/mock_data.dart';
+import '../mocks/mock_data.dart' as MockData;
 import '../models/tour_operator_model.dart';
 
 class TourOperatorApiProvider {
@@ -6,7 +6,7 @@ class TourOperatorApiProvider {
     print('Fetching tour operators...');
     await Future.delayed(Duration(seconds: 2));
     print('Tour operators fetched...');
-    return mockTourOperators
+    return MockData.mockTourOperators
         .map((tourOperator) => TourOperator.fromJson(tourOperator))
         .toList();
   }
@@ -15,7 +15,7 @@ class TourOperatorApiProvider {
     print('Fetching tour operator with id: $id...');
     await Future.delayed(Duration(seconds: 2));
     print('Tour operator fetched...');
-    return TourOperator.fromJson(
-        mockTourOperators.firstWhere((agency) => agency['id'] == id));
+    return TourOperator.fromJson(MockData.mockTourOperators
+        .firstWhere((tourOperator) => tourOperator['id'] == id));
   }
 }

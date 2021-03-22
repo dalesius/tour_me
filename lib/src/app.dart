@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:tour_me/src/ui/agency_view.dart';
+
+import 'ui/tour_operator_details_view.dart';
 
 class App extends HookWidget {
   @override
@@ -12,7 +13,7 @@ class App extends HookWidget {
       // routerDelegate: YeeterDelegate(yeet: routes),
       title: 'TourMe!',
       theme: themeData,
-      home: AgencyView(),
+      home: TourOperatorDetailsView(),
     );
   }
 }
