@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tour_me/src/blocs/tour_operator_bloc.dart';
-import 'package:tour_me/src/blocs/tour_operator_service_bloc.dart';
+import 'package:tour_me/src/blocs/service_bloc.dart';
 import 'package:tour_me/src/models/tour_operator_model.dart';
 import 'package:tour_me/src/models/tour_operator_service_model.dart';
 

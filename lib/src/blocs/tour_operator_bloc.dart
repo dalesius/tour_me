@@ -1,31 +1,22 @@
-import 'package:rxdart/subjects.dart';
-import 'package:tour_me/src/models/tour_operator_model.dart';
-import 'package:tour_me/src/resources/tour_operator_repository.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class TourOperatorBloc {
+import '../domain/tour_operator_repository.dart';
+
+class TourOperatorBloc extends StateNotifier<TourOperatorState> {
   final TourOperatorRepository tourOperatorRepository;
-  final tourOperatorFetcher = PublishSubject<TourOperator>();
-
-  TourOperatorBloc({
-    required this.tourOperatorRepository,
-  });
-
-  Stream<TourOperator> get tourOperator => tourOperatorFetcher.stream;
-
-  fetchTourOperator({required int id}) async {
-    final response = await tourOperatorRepository.fetchTourOperator(id: id);
-    tourOperatorFetcher.sink.add(response);
-  }
-
-  dispose() => tourOperatorFetcher.close();
+  TourOperatorBloc({required this.tourOperatorRepository})
+      : super(TourOperatorState(id: 3, name: ''));
 }
 
-final tourOperatorBloc =
-    TourOperatorBloc(tourOperatorRepository: TourOperatorRepository());
+// Dependency injection & Singleton
+final tourOperatorBloc = StateNotifierProvider((ref) {
+  final tourOperatorRepo = ref.watch(tourOperatorRepository);
+  return TourOperatorBloc(tourOperatorRepository: tourOperatorRepo);
+});
 
-class TourOperatorBlocState {
+class TourOperatorState {
   final int id;
-  final int name;
+  final String name;
 
-  TourOperatorBlocState(this.id, this.name);
+  TourOperatorState({required this.id, required this.name});
 }

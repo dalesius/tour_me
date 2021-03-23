@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tour_me/src/blocs/agency_view_bloc.dart';
+import 'package:tour_me/src/blocs/agency_bloc.dart';
 import 'package:tour_me/src/models/tour_operator_model.dart';
 
 //TODO: Implement navigation

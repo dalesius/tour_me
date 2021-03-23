@@ -7,6 +7,11 @@ class TourOperator {
     _name = tourOperator['name'];
   }
 
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+      };
+
   int get id => _id;
   String get name => _name;
 }
