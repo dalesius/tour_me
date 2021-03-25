@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tour_me/src/blocs/tour_operator_bloc.dart';
-import 'package:tour_me/src/blocs/service_bloc.dart';
-import 'package:tour_me/src/models/tour_operator_model.dart';
-import 'package:tour_me/src/models/tour_operator_service_model.dart';
+
+import '../models/tour_operator/tour_operator_model.dart';
+import '../models/service/tour_operator_service_model.dart';
 
 class TourOperatorDetailsView extends StatefulWidget {
   TourOperatorDetailsView();
@@ -14,23 +13,10 @@ class TourOperatorDetailsView extends StatefulWidget {
 
 class _TourOperatorDetailsViewState extends State<TourOperatorDetailsView> {
   @override
-  void initState() {
-    super.initState();
-    tourOperatorBloc.fetchTourOperator(id: 2);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    tourOperatorBloc.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: StreamBuilder(
-          stream: tourOperatorBloc.tourOperator,
           builder: (context, AsyncSnapshot<TourOperator> snapshot) {
             if (snapshot.hasData) {
               return TourOperatorDetails(
@@ -60,19 +46,6 @@ class TourOperatorDetails extends StatefulWidget {
 
 class _TourOperatorDetailsState extends State<TourOperatorDetails> {
   @override
-  void initState() {
-    super.initState();
-    tourOperatorServiceBloc.fetchTourOperatorServicesByTourOperator(
-        tourOperatorId: 2);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    tourOperatorServiceBloc.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -90,7 +63,6 @@ class _TourOperatorDetailsState extends State<TourOperatorDetails> {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
         ),
         StreamBuilder(
-          stream: tourOperatorServiceBloc.tourOperatorServicesByTourOperator,
           builder:
               (context, AsyncSnapshot<List<TourOperatorService>> snapshot) {
             if (snapshot.hasData) {

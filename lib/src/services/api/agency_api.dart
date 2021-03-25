@@ -1,8 +1,8 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../mocks/mock_data.dart' as MockData;
+import '../../mocks/mock_data.dart' as MockData;
 
-class AgencyService {
+class AgencyApi {
   Future<List<Map<String, dynamic>>> fetchTourOperatorsByAgency(
       {required int id}) async {
     print('Fetching tour operators by agency...');
@@ -24,4 +24,4 @@ class AgencyService {
 }
 
 // Singleton Instance
-final agencyService = Provider((_) => AgencyService());
+final agencyApi = Provider((_) => AgencyApi());

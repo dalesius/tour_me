@@ -1,8 +1,8 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../mocks/mock_data.dart';
+import '../../mocks/mock_data.dart';
 
-class ServiceService {
+class ServiceApi {
   Future<List<Map<String, dynamic>>> fetchServicesByTourOperator(
       {required int tourOperatorId}) async {
     print(
@@ -17,4 +17,4 @@ class ServiceService {
 }
 
 // Singleton
-final serviceService = Provider<ServiceService>((_) => ServiceService());
+final serviceApi = Provider<ServiceApi>((_) => ServiceApi());

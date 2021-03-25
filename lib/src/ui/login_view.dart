@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../blocs/auth/auth_bloc.dart';
 
 class LoginView extends StatelessWidget {
   @override
@@ -24,35 +27,52 @@ class LoginView extends StatelessWidget {
 class LoginWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    var email = useTextEditingController();
-    var password = useTextEditingController();
+    final authState = useProvider(authBlocProvider.state);
+    final authBloc = useProvider(authBlocProvider);
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Form(
-        child: Column(
-          children: [
-            TextFormField(
-              decoration: InputDecoration(
-                hintText: 'Please enter your email',
-              ),
+      child: Column(
+        children: [
+          CircleAvatar(backgroundColor: Colors.amberAccent),
+          SizedBox(height: 25),
+          authState.when(
+            loading: () => CircularProgressIndicator(),
+            authenticated: (user) => Text('Authenticated'),
+            unauthenticated: (username, password, errorMessage) => Column(
+              children: [
+                TextFormField(
+                  onChanged: (value) {
+                    authBloc.usernameChanged(value);
+                  },
+                  decoration: InputDecoration(
+                    errorText: errorMessage,
+                    hintText: 'Please enter your username',
+                  ),
+                ),
+                SizedBox(height: 25),
+                TextField(
+                  onChanged: (value) {
+                    authBloc.passwordChanged(value);
+                  },
+                  decoration: InputDecoration(
+                    errorText: errorMessage,
+                    hintText: 'Please enter your password',
+                  ),
+                ),
+                SizedBox(height: 25),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () => authBloc.loginButtonPressed(
+                        username: username, password: password),
+                    child: Text('Login'),
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: 20),
-            TextFormField(
-              decoration: InputDecoration(
-                hintText: 'Please enter your password',
-              ),
-            ),
-            SizedBox(height: 20),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text('Login'),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -10,9 +10,9 @@ class AgencyBloc extends StateNotifier<AgencyState> {
 
 }
 
-final agencyBloc = StateNotifierProvider((ref) {
+final agencyBloc = StateNotifierProvider<AgencyBloc>((ref) {
   final agencyRepo = ref.watch(agencyRepository);
-  AgencyBloc(agencyRepository: agencyRepo);
+  return AgencyBloc(agencyRepository: agencyRepo);
 });
 
 class AgencyState {}

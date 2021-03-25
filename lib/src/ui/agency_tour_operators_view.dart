@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tour_me/src/blocs/agency_bloc.dart';
-import 'package:tour_me/src/models/tour_operator_model.dart';
+
+import '../models/tour_operator/tour_operator_model.dart';
 
 //TODO: Implement navigation
 
@@ -10,18 +10,6 @@ class AgencyTourOperatorsTab extends StatefulWidget {
 }
 
 class _AgencyTourOperatorsTabState extends State<AgencyTourOperatorsTab> {
-  @override
-  void initState() {
-    super.initState();
-    agencyViewBloc.fetchTourOperatorsByAgency(id: 2);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    agencyViewBloc.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,9 +25,7 @@ class _AgencyTourOperatorsTabState extends State<AgencyTourOperatorsTab> {
             ),
           ),
         ),
-        Expanded(
-            child: StreamBuilder(
-          stream: agencyViewBloc.allTourOperators,
+        Expanded(child: StreamBuilder(
           builder: (context, AsyncSnapshot<List<TourOperator>> snapshot) {
             if (snapshot.hasData) {
               return TourOperatorsList(tourOperators: snapshot.data!);

@@ -9,7 +9,7 @@ class TourOperatorBloc extends StateNotifier<TourOperatorState> {
 }
 
 // Dependency injection & Singleton
-final tourOperatorBloc = StateNotifierProvider((ref) {
+final tourOperatorBloc = StateNotifierProvider<TourOperatorBloc>((ref) {
   final tourOperatorRepo = ref.watch(tourOperatorRepository);
   return TourOperatorBloc(tourOperatorRepository: tourOperatorRepo);
 });

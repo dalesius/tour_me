@@ -1,8 +1,8 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../mocks/mock_data.dart' as MockData;
+import '../../mocks/mock_data.dart' as MockData;
 
-class TourOperatorService {
+class TourOperatorApi {
   Future<List<Map<String, dynamic>>> fetchAllTourOperators() async {
     print('Fetching all tour operators...');
     await Future.delayed(Duration(seconds: 3));
@@ -20,4 +20,4 @@ class TourOperatorService {
   }
 }
 
-final tourOperatorService = Provider((_) => TourOperatorService());
+final tourOperatorApi = Provider((_) => TourOperatorApi());

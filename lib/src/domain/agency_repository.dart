@@ -1,17 +1,16 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import '../infrastructure/agency_service.dart';
-import '../models/agency_model.dart';
+import 'package:tour_me/src/services/api/agency_api.dart';
+import '../models/agency/agency_model.dart';
 
 class AgencyRepository {
-  AgencyService agencyService;
+  AgencyApi agencyApi;
 
-  AgencyRepository({required this.agencyService});
+  AgencyRepository({required this.agencyApi});
 
   Future<List<Agency>> fetchAllAgencies() async {
     try {
-      final agencyList = await agencyService.fetchAllAgencies();
-      return agencyList.map((agency) => Agency.fromJson(agency)).toList();
+      final agencyList = await agencyApi.fetchAllAgencies();
+      return agencyList.map((agency) => Agency.fromJson(json: agency)).toList();
     } catch (e) {
       return [];
     }
@@ -19,7 +18,7 @@ class AgencyRepository {
 }
 
 // Dependency Injection & Singleton
-final agencyRepository = Provider((ref) {
-  final agencyApi = ref.watch(agencyService);
-  AgencyRepository(agencyService: agencyApi);
+final agencyRepository = Provider<AgencyRepository>((ref) {
+  final service = ref.watch(agencyApi);
+  return AgencyRepository(agencyApi: service);
 });

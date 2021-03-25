@@ -1,16 +1,16 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../infrastructure/service_service.dart';
-import '../models/tour_operator_service_model.dart';
+import '../models/service/tour_operator_service_model.dart';
+import '../services/api/service_api.dart';
 
 class ServiceRepository {
-  final ServiceService serviceService;
+  final ServiceApi serviceApi;
 
-  ServiceRepository({required this.serviceService});
+  ServiceRepository({required this.serviceApi});
 
   Future<List<TourOperatorService>> fetchServicesByTourOperator(
       {required int tourOperatorId}) async {
-    final result = await serviceService.fetchServicesByTourOperator(
+    final result = await serviceApi.fetchServicesByTourOperator(
         tourOperatorId: tourOperatorId);
     return result
         .map((service) => TourOperatorService.fromJson(service))
@@ -20,6 +20,6 @@ class ServiceRepository {
 
 // Dependency injection & Singleton
 final serviceRepository = Provider<ServiceRepository>((ref) {
-  final tourServiceService = ref.watch(serviceService);
-  return ServiceRepository(serviceService: tourServiceService);
+  final service = ref.watch(serviceApi);
+  return ServiceRepository(serviceApi: service);
 });
