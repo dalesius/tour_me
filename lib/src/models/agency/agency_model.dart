@@ -7,6 +7,5 @@ part 'agency_model.g.dart';
 abstract class Agency with _$Agency {
   const factory Agency({required int id, required String name}) = _Agency;
 
-  factory Agency.fromJson({required Map<String, dynamic> json}) =>
-      _$AgencyFromJson(json);
+  factory Agency.fromJson(json) => _$AgencyFromJson(json);
 }

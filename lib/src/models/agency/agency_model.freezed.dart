@@ -28,7 +28,7 @@ class _$AgencyTearOff {
   }
 
   Agency fromJson(Map<String, Object> json) {
-    return Agency.fromJson(json: json);
+    return Agency.fromJson(json);
   }
 }
 

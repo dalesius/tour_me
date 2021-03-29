@@ -10,7 +10,7 @@ class AgencyRepository {
   Future<List<Agency>> fetchAllAgencies() async {
     try {
       final agencyList = await agencyApi.fetchAllAgencies();
-      return agencyList.map((agency) => Agency.fromJson(json: agency)).toList();
+      return agencyList.map((agency) => Agency.fromJson(agency)).toList();
     } catch (e) {
       return [];
     }

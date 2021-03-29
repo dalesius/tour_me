@@ -12,23 +12,14 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-User _$UserFromJson(Map<String, dynamic> json) {
-  return _User.fromJson(json);
-}
-
 /// @nodoc
 class _$UserTearOff {
   const _$UserTearOff();
 
-  _User call({required String username, required String authorization}) {
+  _User call({required String userId}) {
     return _User(
-      username: username,
-      authorization: authorization,
+      userId: userId,
     );
-  }
-
-  User fromJson(Map<String, Object> json) {
-    return User.fromJson(json: json);
   }
 }
 
@@ -37,10 +28,8 @@ const $User = _$UserTearOff();
 
 /// @nodoc
 mixin _$User {
-  String get username => throw _privateConstructorUsedError;
-  String get authorization => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
 }
@@ -49,7 +38,7 @@ mixin _$User {
 abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
-  $Res call({String username, String authorization});
+  $Res call({String userId});
 }
 
 /// @nodoc
@@ -62,17 +51,12 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? username = freezed,
-    Object? authorization = freezed,
+    Object? userId = freezed,
   }) {
     return _then(_value.copyWith(
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorization: authorization == freezed
-          ? _value.authorization
-          : authorization // ignore: cast_nullable_to_non_nullable
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -83,7 +67,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$UserCopyWith(_User value, $Res Function(_User) then) =
       __$UserCopyWithImpl<$Res>;
   @override
-  $Res call({String username, String authorization});
+  $Res call({String userId});
 }
 
 /// @nodoc
@@ -97,80 +81,52 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? username = freezed,
-    Object? authorization = freezed,
+    Object? userId = freezed,
   }) {
     return _then(_User(
-      username: username == freezed
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorization: authorization == freezed
-          ? _value.authorization
-          : authorization // ignore: cast_nullable_to_non_nullable
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
 class _$_User implements _User {
-  const _$_User({required this.username, required this.authorization});
-
-  factory _$_User.fromJson(Map<String, dynamic> json) =>
-      _$_$_UserFromJson(json);
+  const _$_User({required this.userId});
 
   @override
-  final String username;
-  @override
-  final String authorization;
+  final String userId;
 
   @override
   String toString() {
-    return 'User(username: $username, authorization: $authorization)';
+    return 'User(userId: $userId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _User &&
-            (identical(other.username, username) ||
-                const DeepCollectionEquality()
-                    .equals(other.username, username)) &&
-            (identical(other.authorization, authorization) ||
-                const DeepCollectionEquality()
-                    .equals(other.authorization, authorization)));
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(username) ^
-      const DeepCollectionEquality().hash(authorization);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userId);
 
   @JsonKey(ignore: true)
   @override
   _$UserCopyWith<_User> get copyWith =>
       __$UserCopyWithImpl<_User>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_UserToJson(this);
-  }
 }
 
 abstract class _User implements User {
-  const factory _User(
-      {required String username, required String authorization}) = _$_User;
-
-  factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
+  const factory _User({required String userId}) = _$_User;
 
   @override
-  String get username => throw _privateConstructorUsedError;
-  @override
-  String get authorization => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

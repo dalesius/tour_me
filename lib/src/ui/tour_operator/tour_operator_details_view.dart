@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../models/tour_operator/tour_operator_model.dart';
-import '../models/service/tour_operator_service_model.dart';
+import '../../models/tour_operator/tour_operator_model.dart';
+import '../../models/service/tour_operator_service_model.dart';
 
 class TourOperatorDetailsView extends StatefulWidget {
   TourOperatorDetailsView();

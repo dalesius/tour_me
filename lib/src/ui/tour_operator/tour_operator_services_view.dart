@@ -4,7 +4,7 @@
 // TODO: feat: Agency request (accept, decline, manual)
 import 'package:flutter/material.dart';
 
-class TourOperatorView extends StatelessWidget {
+class TourOperatorServicesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +18,11 @@ class TourOperatorView extends StatelessWidget {
 class TourOperatorServicesTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Center(
+        child: Text('Services for TO'),
+      ),
+    );
   }
 }
 

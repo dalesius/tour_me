@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-
-import 'ui/login_view.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:tour_me/src/routes/routes.dart';
+import 'package:yeet/yeet.dart';
 
 class App extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    // final routes = useProvider(routeProvider);
+    final routes = useProvider(routeProvider);
 
-    return MaterialApp(
-      // routeInformationParser: YeetInformationParser(),
-      // routerDelegate: YeeterDelegate(yeet: routes),
+    return MaterialApp.router(
+      routeInformationParser: YeetInformationParser(),
+      routerDelegate: YeeterDelegate(yeet: routes),
       title: 'TourMe!',
       theme: themeData,
-      home: LoginView(),
     );
   }
 }
