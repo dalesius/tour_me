@@ -19,6 +19,12 @@ class _$TourOperatorStateTearOff {
   _Loading loading() {
     return const _Loading();
   }
+
+  _TourOperatorState call({required List<TourOperatorService> services}) {
+    return _TourOperatorState(
+      services: services,
+    );
+  }
 }
 
 /// @nodoc
@@ -27,23 +33,27 @@ const $TourOperatorState = _$TourOperatorStateTearOff();
 /// @nodoc
 mixin _$TourOperatorState {
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
+  TResult when<TResult extends Object?>(
+    TResult Function(List<TourOperatorService> services) $default, {
     required TResult Function() loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(List<TourOperatorService> services)? $default, {
     TResult Function()? loading,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object?>({
+  TResult map<TResult extends Object?>(
+    TResult Function(_TourOperatorState value) $default, {
     required TResult Function(_Loading value) loading,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_TourOperatorState value)? $default, {
     TResult Function(_Loading value)? loading,
     required TResult orElse(),
   }) =>
@@ -102,7 +112,8 @@ class _$_Loading implements _Loading {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
+  TResult when<TResult extends Object?>(
+    TResult Function(List<TourOperatorService> services) $default, {
     required TResult Function() loading,
   }) {
     return loading();
@@ -110,7 +121,8 @@ class _$_Loading implements _Loading {
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(List<TourOperatorService> services)? $default, {
     TResult Function()? loading,
     required TResult orElse(),
   }) {
@@ -122,7 +134,8 @@ class _$_Loading implements _Loading {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object?>({
+  TResult map<TResult extends Object?>(
+    TResult Function(_TourOperatorState value) $default, {
     required TResult Function(_Loading value) loading,
   }) {
     return loading(this);
@@ -130,7 +143,8 @@ class _$_Loading implements _Loading {
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_TourOperatorState value)? $default, {
     TResult Function(_Loading value)? loading,
     required TResult orElse(),
   }) {
@@ -143,4 +157,121 @@ class _$_Loading implements _Loading {
 
 abstract class _Loading implements TourOperatorState {
   const factory _Loading() = _$_Loading;
+}
+
+/// @nodoc
+abstract class _$TourOperatorStateCopyWith<$Res> {
+  factory _$TourOperatorStateCopyWith(
+          _TourOperatorState value, $Res Function(_TourOperatorState) then) =
+      __$TourOperatorStateCopyWithImpl<$Res>;
+  $Res call({List<TourOperatorService> services});
+}
+
+/// @nodoc
+class __$TourOperatorStateCopyWithImpl<$Res>
+    extends _$TourOperatorStateCopyWithImpl<$Res>
+    implements _$TourOperatorStateCopyWith<$Res> {
+  __$TourOperatorStateCopyWithImpl(
+      _TourOperatorState _value, $Res Function(_TourOperatorState) _then)
+      : super(_value, (v) => _then(v as _TourOperatorState));
+
+  @override
+  _TourOperatorState get _value => super._value as _TourOperatorState;
+
+  @override
+  $Res call({
+    Object? services = freezed,
+  }) {
+    return _then(_TourOperatorState(
+      services: services == freezed
+          ? _value.services
+          : services // ignore: cast_nullable_to_non_nullable
+              as List<TourOperatorService>,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_TourOperatorState implements _TourOperatorState {
+  const _$_TourOperatorState({required this.services});
+
+  @override
+  final List<TourOperatorService> services;
+
+  @override
+  String toString() {
+    return 'TourOperatorState(services: $services)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _TourOperatorState &&
+            (identical(other.services, services) ||
+                const DeepCollectionEquality()
+                    .equals(other.services, services)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(services);
+
+  @JsonKey(ignore: true)
+  @override
+  _$TourOperatorStateCopyWith<_TourOperatorState> get copyWith =>
+      __$TourOperatorStateCopyWithImpl<_TourOperatorState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(List<TourOperatorService> services) $default, {
+    required TResult Function() loading,
+  }) {
+    return $default(services);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(List<TourOperatorService> services)? $default, {
+    TResult Function()? loading,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(services);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_TourOperatorState value) $default, {
+    required TResult Function(_Loading value) loading,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_TourOperatorState value)? $default, {
+    TResult Function(_Loading value)? loading,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _TourOperatorState implements TourOperatorState {
+  const factory _TourOperatorState(
+      {required List<TourOperatorService> services}) = _$_TourOperatorState;
+
+  List<TourOperatorService> get services => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$TourOperatorStateCopyWith<_TourOperatorState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

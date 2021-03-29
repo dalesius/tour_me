@@ -50,7 +50,7 @@ List<Map<String, dynamic>> mockTourOperators = [
 List<Map<String, dynamic>> mockTourOperatorServices = [
   {
     'id': 1,
-    'tour_operator_id': 2,
+    'tour_operator_id': 'admin@admin.com',
     'name': 'Discover Scuba Diving',
   },
   {
@@ -65,12 +65,12 @@ List<Map<String, dynamic>> mockTourOperatorServices = [
   },
   {
     'id': 4,
-    'tour_operator_id': 2,
+    'tour_operator_id': 'admin@admin.com',
     'name': 'Snorkeling',
   },
   {
     'id': 5,
-    'tour_operator_id': 2,
+    'tour_operator_id': 'admin@admin.com',
     'name': 'Diving Las Catalinas',
   },
 ];

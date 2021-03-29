@@ -21,6 +21,7 @@ class LoginBloc extends StateNotifier<LoginState> {
   void loginButtonPressed() async {
     final result = await authRepository.login(
         email: state.email, password: state.password);
+    print(result);
     result.fold(
       (failure) {
         //TODO: update the state to show error message

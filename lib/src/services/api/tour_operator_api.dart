@@ -18,6 +18,16 @@ class TourOperatorApi {
       (tourOperator) => tourOperator['id'] == id,
     );
   }
+
+  Future<List<Map<String, dynamic>>> getAllServicesByOperator(
+      {required String email}) async {
+    print('Fetching tour operator services with id: $email...');
+    await Future.delayed(Duration(seconds: 3));
+    print('Tour operator services fetched...');
+    return MockData.mockTourOperatorServices
+        .where((service) => service['tour_operator_id'] == email)
+        .toList();
+  }
 }
 
 final tourOperatorApi = Provider((_) => TourOperatorApi());

@@ -13,6 +13,7 @@ class App extends HookWidget {
       routeInformationParser: YeetInformationParser(),
       routerDelegate: YeeterDelegate(yeet: routes),
       title: 'TourMe!',
+      debugShowCheckedModeBanner: false,
       theme: themeData,
     );
   }

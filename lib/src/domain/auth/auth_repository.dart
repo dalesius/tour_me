@@ -25,7 +25,7 @@ class AuthRepository {
         return left(GeneralAuthFailure());
       }
       return right(User(
-        userId: firebaseUser.uid,
+        userId: firebaseUser.email!,
       ));
     } catch (e) {
       print(e);
@@ -41,12 +41,11 @@ class AuthRepository {
       final userCredential = await _authApi.signInWithEmailAndPassword(
           email: email, password: password);
       final firebaseUser = userCredential.user;
-      print(firebaseUser);
       if (firebaseUser == null) {
         return left(GeneralAuthFailure());
       }
       return right(User(
-        userId: firebaseUser.uid,
+        userId: firebaseUser.email!,
       ));
     } catch (e) {
       print(e);
@@ -66,7 +65,7 @@ class AuthRepository {
   Stream<User?> authStateChanges() {
     return _authApi
         .authStateChanges()
-        .map((user) => user == null ? null : User(userId: user.uid));
+        .map((user) => user == null ? null : User(userId: user.email!));
   }
 }
 

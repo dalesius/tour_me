@@ -10,7 +10,7 @@ import '../ui/tour_operator/tour_operator_services_view.dart';
 final routeProvider = Provider<Yeet>((ref) {
   final authState = ref.watch(authBlocProvider.state);
   return authState.maybeWhen(
-    authenticated: (user) => privateRoutes,
+    authenticated: (_) => privateRoutes,
     orElse: () => publicRoutes,
   );
 });
@@ -27,7 +27,7 @@ final publicRoutes = Yeet(
 final privateRoutes = Yeet(
   children: [
     Yeet(
-      path: '/tour_operator',
+      path: '/',
       builder: (_, __) => TourOperatorServicesView(),
     ),
   ],
