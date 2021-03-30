@@ -21,7 +21,7 @@ class _$TourOperatorServiceTearOff {
   const _$TourOperatorServiceTearOff();
 
   _TourOperatorService call(
-      {required int id, required int tourOperatorId, required String name}) {
+      {required int id, required String tourOperatorId, required String name}) {
     return _TourOperatorService(
       id: id,
       tourOperatorId: tourOperatorId,
@@ -40,7 +40,7 @@ const $TourOperatorService = _$TourOperatorServiceTearOff();
 /// @nodoc
 mixin _$TourOperatorService {
   int get id => throw _privateConstructorUsedError;
-  int get tourOperatorId => throw _privateConstructorUsedError;
+  String get tourOperatorId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,7 +54,7 @@ abstract class $TourOperatorServiceCopyWith<$Res> {
   factory $TourOperatorServiceCopyWith(
           TourOperatorService value, $Res Function(TourOperatorService) then) =
       _$TourOperatorServiceCopyWithImpl<$Res>;
-  $Res call({int id, int tourOperatorId, String name});
+  $Res call({int id, String tourOperatorId, String name});
 }
 
 /// @nodoc
@@ -80,7 +80,7 @@ class _$TourOperatorServiceCopyWithImpl<$Res>
       tourOperatorId: tourOperatorId == freezed
           ? _value.tourOperatorId
           : tourOperatorId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -96,7 +96,7 @@ abstract class _$TourOperatorServiceCopyWith<$Res>
           $Res Function(_TourOperatorService) then) =
       __$TourOperatorServiceCopyWithImpl<$Res>;
   @override
-  $Res call({int id, int tourOperatorId, String name});
+  $Res call({int id, String tourOperatorId, String name});
 }
 
 /// @nodoc
@@ -124,7 +124,7 @@ class __$TourOperatorServiceCopyWithImpl<$Res>
       tourOperatorId: tourOperatorId == freezed
           ? _value.tourOperatorId
           : tourOperatorId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -133,7 +133,7 @@ class __$TourOperatorServiceCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 
 /// @nodoc
 class _$_TourOperatorService implements _TourOperatorService {
@@ -146,7 +146,7 @@ class _$_TourOperatorService implements _TourOperatorService {
   @override
   final int id;
   @override
-  final int tourOperatorId;
+  final String tourOperatorId;
   @override
   final String name;
 
@@ -190,7 +190,7 @@ class _$_TourOperatorService implements _TourOperatorService {
 abstract class _TourOperatorService implements TourOperatorService {
   const factory _TourOperatorService(
       {required int id,
-      required int tourOperatorId,
+      required String tourOperatorId,
       required String name}) = _$_TourOperatorService;
 
   factory _TourOperatorService.fromJson(Map<String, dynamic> json) =
@@ -199,7 +199,7 @@ abstract class _TourOperatorService implements TourOperatorService {
   @override
   int get id => throw _privateConstructorUsedError;
   @override
-  int get tourOperatorId => throw _privateConstructorUsedError;
+  String get tourOperatorId => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
   @override

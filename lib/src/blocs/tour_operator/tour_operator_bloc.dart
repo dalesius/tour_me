@@ -1,8 +1,8 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tour_me/src/blocs/tour_operator/tour_operator_state.dart';
-import 'package:tour_me/src/domain/auth/auth_repository.dart';
 
+import '../../domain/auth/auth_repository.dart';
 import '../../domain/tour_operator_repository.dart';
+import 'tour_operator_state.dart';
 
 class TourOperatorBloc extends StateNotifier<TourOperatorState> {
   final TourOperatorRepository tourOperatorRepository;
@@ -15,10 +15,16 @@ class TourOperatorBloc extends StateNotifier<TourOperatorState> {
     authRepo.logout();
   }
 
+  void addServiceButtonPressed(String? serviceName) {
+    if (serviceName != null) {
+      tourOperatorRepository.addServiceToOperator(serviceName);
+    }
+  }
+
   void getAllServicesByOperator({required String email}) async {
     final services =
         await tourOperatorRepository.getAllServicesByOperator(email: email);
-    state = TourOperatorState(services: services);
+    state = (state as Data).copyWith(services: services);
   }
 }
 

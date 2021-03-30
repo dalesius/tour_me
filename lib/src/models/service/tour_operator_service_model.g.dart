@@ -11,7 +11,7 @@ _$_TourOperatorService _$_$_TourOperatorServiceFromJson(
     Map<String, dynamic> json) {
   return _$_TourOperatorService(
     id: json['id'] as int,
-    tourOperatorId: json['tourOperatorId'] as int,
+    tourOperatorId: json['tour_operator_id'] as String,
     name: json['name'] as String,
   );
 }
@@ -21,6 +21,6 @@ Map<String, dynamic> _$_$_TourOperatorServiceToJson(
         _$_TourOperatorService instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'tourOperatorId': instance.tourOperatorId,
+      'tour_operator_id': instance.tourOperatorId,
       'name': instance.name,
     };

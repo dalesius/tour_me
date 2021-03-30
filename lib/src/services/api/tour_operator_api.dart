@@ -19,6 +19,13 @@ class TourOperatorApi {
     );
   }
 
+  Future<void> addServiceToOperator(Map<String, dynamic> service) async {
+    print('Adding tour operator service to operator...');
+    await Future.delayed(Duration(seconds: 3));
+    print('Tour operator service added...');
+    MockData.mockTourOperatorServices.add(service);
+  }
+
   Future<List<Map<String, dynamic>>> getAllServicesByOperator(
       {required String email}) async {
     print('Fetching tour operator services with id: $email...');

@@ -6,18 +6,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tour_me/src/blocs/auth/auth_bloc.dart';
+import 'package:tour_me/src/blocs/auth/auth_state.dart';
 import 'package:tour_me/src/blocs/tour_operator/tour_operator_bloc.dart';
 import 'package:tour_me/src/models/service/tour_operator_service_model.dart';
 
 class TourOperatorServicesView extends HookWidget {
   final authState = useProvider(authBlocProvider.state);
   final tourOperatorBloc = useProvider(tourOperatorBlocProvider);
+  //useeffect???
 
   @override
   Widget build(BuildContext context) {
-    tourOperatorBloc.getAllServicesByOperator(
-        email: authState.maybeWhen(
-            authenticated: (user) => user.userId, orElse: () => 'null'));
+    useEffect(() {
+      tourOperatorBloc.getAllServicesByOperator(
+          email: (authState as Authenticated).user.userId);
+    }, []);
+
     return Scaffold(
       appBar: AppBar(
         title: authState.maybeWhen(
@@ -35,6 +39,12 @@ class TourOperatorServicesView extends HookWidget {
         ],
       ),
       body: TourOperatorServicesTab(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // return AddServiceDialog();
+        },
+        child: Icon(Icons.add),
+      ),
       bottomNavigationBar: TourOperatorBottomNavigationBar(),
     );
   }
@@ -47,16 +57,37 @@ class TourOperatorServicesTab extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Center(
-        child: tourOperatorState.when(
-          (services) => SingleChildScrollView(
-              child: Column(
-            children: services
-                .map((service) => TourOperatorServiceCard(service: service))
-                .toList(),
-          )),
-          loading: () => CircularProgressIndicator(),
-        ),
+      child: Column(
+        children: [
+          SizedBox(height: 10),
+          Row(
+            children: [
+              Text(
+                'My services',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                ),
+                textAlign: TextAlign.start,
+              ),
+            ],
+          ),
+          SizedBox(height: 20),
+          Center(
+            child: tourOperatorState.when(
+              data: (services, _) => SingleChildScrollView(
+                child: Column(
+                  children: services
+                      .map((service) =>
+                          TourOperatorServiceCard(service: service))
+                      .toList(),
+                ),
+              ),
+              loading: () => CircularProgressIndicator(),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -110,3 +141,31 @@ class TourOperatorBottomNavigationBar extends StatelessWidget {
     );
   }
 }
+
+// class AddServiceDialog extends HookWidget {
+//   final tourOperatorBloc = useProvider(tourOperatorBlocProvider);
+//   final textFieldController = TextEditingController();
+//   @override
+//   Widget build(BuildContext context) async {
+//     return await showDialog<Dialog>(
+//       context: context,
+//       builder: (_) => Dialog(
+//         child: Column(
+//           children: [
+//             TextField(
+//               controller: textFieldController,
+//               decoration: InputDecoration(
+//                 hintText: 'Service name',
+//               ),
+//             ),
+//             ElevatedButton(
+//               onPressed: () => tourOperatorBloc
+//                   .addServiceButtonPressed(textFieldController.text),
+//               child: Text('Add Service'),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
