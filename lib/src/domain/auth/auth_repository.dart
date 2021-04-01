@@ -28,6 +28,7 @@ class AuthRepository {
         userId: firebaseUser.email!,
       ));
     } catch (e) {
+      print('Error');
       print(e);
       return left(GeneralAuthFailure());
     }
@@ -41,6 +42,8 @@ class AuthRepository {
       final userCredential = await _authApi.signInWithEmailAndPassword(
           email: email, password: password);
       final firebaseUser = userCredential.user;
+      print('firebaseUser: ');
+      print(firebaseUser);
       if (firebaseUser == null) {
         return left(GeneralAuthFailure());
       }

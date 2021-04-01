@@ -20,10 +20,9 @@ class _$TourOperatorStateTearOff {
     return const _Loading();
   }
 
-  Data data({required List<TourOperatorService> services, required User user}) {
-    return Data(
+  _Data data({required List<TourOperatorService> services}) {
+    return _Data(
       services: services,
-      user: user,
     );
   }
 }
@@ -36,27 +35,26 @@ mixin _$TourOperatorState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<TourOperatorService> services, User user)
-        data,
+    required TResult Function(List<TourOperatorService> services) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<TourOperatorService> services, User user)? data,
+    TResult Function(List<TourOperatorService> services)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(Data value) data,
+    required TResult Function(_Data value) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(Data value)? data,
+    TResult Function(_Data value)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -116,8 +114,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<TourOperatorService> services, User user)
-        data,
+    required TResult Function(List<TourOperatorService> services) data,
   }) {
     return loading();
   }
@@ -126,7 +123,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<TourOperatorService> services, User user)? data,
+    TResult Function(List<TourOperatorService> services)? data,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -139,7 +136,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(Data value) data,
+    required TResult Function(_Data value) data,
   }) {
     return loading(this);
   }
@@ -148,7 +145,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(Data value)? data,
+    TResult Function(_Data value)? data,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -163,103 +160,82 @@ abstract class _Loading implements TourOperatorState {
 }
 
 /// @nodoc
-abstract class $DataCopyWith<$Res> {
-  factory $DataCopyWith(Data value, $Res Function(Data) then) =
-      _$DataCopyWithImpl<$Res>;
-  $Res call({List<TourOperatorService> services, User user});
-
-  $UserCopyWith<$Res> get user;
+abstract class _$DataCopyWith<$Res> {
+  factory _$DataCopyWith(_Data value, $Res Function(_Data) then) =
+      __$DataCopyWithImpl<$Res>;
+  $Res call({List<TourOperatorService> services});
 }
 
 /// @nodoc
-class _$DataCopyWithImpl<$Res> extends _$TourOperatorStateCopyWithImpl<$Res>
-    implements $DataCopyWith<$Res> {
-  _$DataCopyWithImpl(Data _value, $Res Function(Data) _then)
-      : super(_value, (v) => _then(v as Data));
+class __$DataCopyWithImpl<$Res> extends _$TourOperatorStateCopyWithImpl<$Res>
+    implements _$DataCopyWith<$Res> {
+  __$DataCopyWithImpl(_Data _value, $Res Function(_Data) _then)
+      : super(_value, (v) => _then(v as _Data));
 
   @override
-  Data get _value => super._value as Data;
+  _Data get _value => super._value as _Data;
 
   @override
   $Res call({
     Object? services = freezed,
-    Object? user = freezed,
   }) {
-    return _then(Data(
+    return _then(_Data(
       services: services == freezed
           ? _value.services
           : services // ignore: cast_nullable_to_non_nullable
               as List<TourOperatorService>,
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
     ));
-  }
-
-  @override
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
   }
 }
 
 /// @nodoc
-class _$Data implements Data {
-  const _$Data({required this.services, required this.user});
+class _$_Data implements _Data {
+  const _$_Data({required this.services});
 
   @override
   final List<TourOperatorService> services;
-  @override
-  final User user;
 
   @override
   String toString() {
-    return 'TourOperatorState.data(services: $services, user: $user)';
+    return 'TourOperatorState.data(services: $services)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Data &&
+        (other is _Data &&
             (identical(other.services, services) ||
                 const DeepCollectionEquality()
-                    .equals(other.services, services)) &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)));
+                    .equals(other.services, services)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(services) ^
-      const DeepCollectionEquality().hash(user);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(services);
 
   @JsonKey(ignore: true)
   @override
-  $DataCopyWith<Data> get copyWith =>
-      _$DataCopyWithImpl<Data>(this, _$identity);
+  _$DataCopyWith<_Data> get copyWith =>
+      __$DataCopyWithImpl<_Data>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<TourOperatorService> services, User user)
-        data,
+    required TResult Function(List<TourOperatorService> services) data,
   }) {
-    return data(services, user);
+    return data(services);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<TourOperatorService> services, User user)? data,
+    TResult Function(List<TourOperatorService> services)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(services, user);
+      return data(services);
     }
     return orElse();
   }
@@ -268,7 +244,7 @@ class _$Data implements Data {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(Data value) data,
+    required TResult Function(_Data value) data,
   }) {
     return data(this);
   }
@@ -277,7 +253,7 @@ class _$Data implements Data {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(Data value)? data,
+    TResult Function(_Data value)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
@@ -287,13 +263,10 @@ class _$Data implements Data {
   }
 }
 
-abstract class Data implements TourOperatorState {
-  const factory Data(
-      {required List<TourOperatorService> services,
-      required User user}) = _$Data;
+abstract class _Data implements TourOperatorState {
+  const factory _Data({required List<TourOperatorService> services}) = _$_Data;
 
   List<TourOperatorService> get services => throw _privateConstructorUsedError;
-  User get user => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
+  _$DataCopyWith<_Data> get copyWith => throw _privateConstructorUsedError;
 }

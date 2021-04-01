@@ -13,7 +13,6 @@ import 'package:tour_me/src/models/service/tour_operator_service_model.dart';
 class TourOperatorServicesView extends HookWidget {
   final authState = useProvider(authBlocProvider.state);
   final tourOperatorBloc = useProvider(tourOperatorBlocProvider);
-  //useeffect???
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +38,6 @@ class TourOperatorServicesView extends HookWidget {
         ],
       ),
       body: TourOperatorServicesTab(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // return AddServiceDialog();
-        },
-        child: Icon(Icons.add),
-      ),
       bottomNavigationBar: TourOperatorBottomNavigationBar(),
     );
   }
@@ -53,13 +46,14 @@ class TourOperatorServicesView extends HookWidget {
 class TourOperatorServicesTab extends HookWidget {
   final tourOperatorState = useProvider(tourOperatorBlocProvider.state);
   final tourOperatorBloc = useProvider(tourOperatorBlocProvider);
+  final textFieldController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(15),
       child: Column(
         children: [
-          SizedBox(height: 10),
           Row(
             children: [
               Text(
@@ -73,16 +67,46 @@ class TourOperatorServicesTab extends HookWidget {
               ),
             ],
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
           Center(
             child: tourOperatorState.when(
-              data: (services, _) => SingleChildScrollView(
-                child: Column(
-                  children: services
-                      .map((service) =>
-                          TourOperatorServiceCard(service: service))
-                      .toList(),
-                ),
+              data: (services) => Column(
+                children: [
+                  Column(
+                    children: services
+                        .map((service) =>
+                            TourOperatorServiceCard(service: service))
+                        .toList(),
+                  ),
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: textFieldController,
+                              decoration: InputDecoration(
+                                  hintText: 'Add new service...',
+                                  contentPadding: EdgeInsets.all(5),
+                                  labelText: 'Service name'),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          IconButton(
+                              color: Colors.blue,
+                              icon: Icon(Icons.add),
+                              onPressed: () {
+                                tourOperatorBloc.addServiceButtonPressed(
+                                    textFieldController.text);
+                              }),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
               loading: () => CircularProgressIndicator(),
             ),

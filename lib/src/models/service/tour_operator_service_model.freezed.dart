@@ -20,12 +20,10 @@ TourOperatorService _$TourOperatorServiceFromJson(Map<String, dynamic> json) {
 class _$TourOperatorServiceTearOff {
   const _$TourOperatorServiceTearOff();
 
-  _TourOperatorService call(
-      {required int id, required String tourOperatorId, required String name}) {
+  _TourOperatorService call({required String name, required int freeSpots}) {
     return _TourOperatorService(
-      id: id,
-      tourOperatorId: tourOperatorId,
       name: name,
+      freeSpots: freeSpots,
     );
   }
 
@@ -39,9 +37,8 @@ const $TourOperatorService = _$TourOperatorServiceTearOff();
 
 /// @nodoc
 mixin _$TourOperatorService {
-  int get id => throw _privateConstructorUsedError;
-  String get tourOperatorId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  int get freeSpots => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +51,7 @@ abstract class $TourOperatorServiceCopyWith<$Res> {
   factory $TourOperatorServiceCopyWith(
           TourOperatorService value, $Res Function(TourOperatorService) then) =
       _$TourOperatorServiceCopyWithImpl<$Res>;
-  $Res call({int id, String tourOperatorId, String name});
+  $Res call({String name, int freeSpots});
 }
 
 /// @nodoc
@@ -68,23 +65,18 @@ class _$TourOperatorServiceCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? tourOperatorId = freezed,
     Object? name = freezed,
+    Object? freeSpots = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      tourOperatorId: tourOperatorId == freezed
-          ? _value.tourOperatorId
-          : tourOperatorId // ignore: cast_nullable_to_non_nullable
-              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      freeSpots: freeSpots == freezed
+          ? _value.freeSpots
+          : freeSpots // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -96,7 +88,7 @@ abstract class _$TourOperatorServiceCopyWith<$Res>
           $Res Function(_TourOperatorService) then) =
       __$TourOperatorServiceCopyWithImpl<$Res>;
   @override
-  $Res call({int id, String tourOperatorId, String name});
+  $Res call({String name, int freeSpots});
 }
 
 /// @nodoc
@@ -112,23 +104,18 @@ class __$TourOperatorServiceCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? tourOperatorId = freezed,
     Object? name = freezed,
+    Object? freeSpots = freezed,
   }) {
     return _then(_TourOperatorService(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      tourOperatorId: tourOperatorId == freezed
-          ? _value.tourOperatorId
-          : tourOperatorId // ignore: cast_nullable_to_non_nullable
-              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      freeSpots: freeSpots == freezed
+          ? _value.freeSpots
+          : freeSpots // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -137,43 +124,37 @@ class __$TourOperatorServiceCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_TourOperatorService implements _TourOperatorService {
-  const _$_TourOperatorService(
-      {required this.id, required this.tourOperatorId, required this.name});
+  const _$_TourOperatorService({required this.name, required this.freeSpots});
 
   factory _$_TourOperatorService.fromJson(Map<String, dynamic> json) =>
       _$_$_TourOperatorServiceFromJson(json);
 
   @override
-  final int id;
-  @override
-  final String tourOperatorId;
-  @override
   final String name;
+  @override
+  final int freeSpots;
 
   @override
   String toString() {
-    return 'TourOperatorService(id: $id, tourOperatorId: $tourOperatorId, name: $name)';
+    return 'TourOperatorService(name: $name, freeSpots: $freeSpots)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _TourOperatorService &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.tourOperatorId, tourOperatorId) ||
-                const DeepCollectionEquality()
-                    .equals(other.tourOperatorId, tourOperatorId)) &&
             (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)));
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.freeSpots, freeSpots) ||
+                const DeepCollectionEquality()
+                    .equals(other.freeSpots, freeSpots)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(tourOperatorId) ^
-      const DeepCollectionEquality().hash(name);
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(freeSpots);
 
   @JsonKey(ignore: true)
   @override
@@ -189,19 +170,15 @@ class _$_TourOperatorService implements _TourOperatorService {
 
 abstract class _TourOperatorService implements TourOperatorService {
   const factory _TourOperatorService(
-      {required int id,
-      required String tourOperatorId,
-      required String name}) = _$_TourOperatorService;
+      {required String name, required int freeSpots}) = _$_TourOperatorService;
 
   factory _TourOperatorService.fromJson(Map<String, dynamic> json) =
       _$_TourOperatorService.fromJson;
 
   @override
-  int get id => throw _privateConstructorUsedError;
-  @override
-  String get tourOperatorId => throw _privateConstructorUsedError;
-  @override
   String get name => throw _privateConstructorUsedError;
+  @override
+  int get freeSpots => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$TourOperatorServiceCopyWith<_TourOperatorService> get copyWith =>
