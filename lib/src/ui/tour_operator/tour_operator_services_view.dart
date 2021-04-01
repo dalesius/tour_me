@@ -1,4 +1,3 @@
-// TODO: feat: Add service
 // TODO: feat: CalendarView with operations (services)
 // TODO: feat: Reservation Requests (accept, decline, manual, auto)
 // TODO: feat: Agency request (accept, decline, manual)
@@ -6,25 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tour_me/src/blocs/auth/auth_bloc.dart';
-import 'package:tour_me/src/blocs/auth/auth_state.dart';
 import 'package:tour_me/src/blocs/tour_operator/tour_operator_bloc.dart';
 import 'package:tour_me/src/models/service/tour_operator_service_model.dart';
+import 'package:yeet/yeet.dart';
 
 class TourOperatorServicesView extends HookWidget {
-  final authState = useProvider(authBlocProvider.state);
-  final tourOperatorBloc = useProvider(tourOperatorBlocProvider);
-
   @override
   Widget build(BuildContext context) {
-    useEffect(() {
-      tourOperatorBloc.getAllServicesByOperator(
-          email: (authState as Authenticated).user.userId);
-    }, []);
-
+    final authState = useProvider(authBlocProvider.state);
+    final tourOperatorBloc = useProvider(tourOperatorBlocProvider);
     return Scaffold(
       appBar: AppBar(
         title: authState.maybeWhen(
-          authenticated: (user) => Text(user.userId),
+          authenticated: (user) => Text(user.id.split('@').first),
           loading: () => CircularProgressIndicator(),
           orElse: () => Text('not valid'),
         ),
@@ -44,12 +37,11 @@ class TourOperatorServicesView extends HookWidget {
 }
 
 class TourOperatorServicesTab extends HookWidget {
-  final tourOperatorState = useProvider(tourOperatorBlocProvider.state);
-  final tourOperatorBloc = useProvider(tourOperatorBlocProvider);
-  final textFieldController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
+    final tourOperatorState = useProvider(tourOperatorBlocProvider.state);
+    final tourOperatorBloc = useProvider(tourOperatorBlocProvider);
+    final textFieldController = useTextEditingController();
     return Container(
       padding: EdgeInsets.all(15),
       child: Column(
@@ -101,6 +93,7 @@ class TourOperatorServicesTab extends HookWidget {
                               onPressed: () {
                                 tourOperatorBloc.addServiceButtonPressed(
                                     textFieldController.text);
+                                textFieldController.clear();
                               }),
                         ],
                       ),
@@ -117,16 +110,35 @@ class TourOperatorServicesTab extends HookWidget {
   }
 }
 
-class TourOperatorServiceCard extends StatelessWidget {
+class TourOperatorServiceCard extends HookWidget {
   final TourOperatorService service;
   TourOperatorServiceCard({required this.service});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        leading: Text(service.id.toString()),
-        title: Text(service.name),
+    final tourOperatorBloc = useProvider(tourOperatorBlocProvider);
+    return GestureDetector(
+      onTap: () => context.yeet('/services/${service.id}'),
+      child: Hero(
+        tag: 'service ${service.id}',
+        child: Card(
+          child: ListTile(
+            title: Text(
+              service.name,
+              style: TextStyle(
+                fontSize: 20,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+            trailing: IconButton(
+                icon: Icon(
+                  Icons.remove,
+                  color: Colors.red,
+                ),
+                onPressed: () =>
+                    tourOperatorBloc.removeServiceButtonPressed(service)),
+          ),
+        ),
       ),
     );
   }

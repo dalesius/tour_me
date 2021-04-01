@@ -20,8 +20,8 @@ class _$TourOperatorStateTearOff {
     return const _Loading();
   }
 
-  _Data data({required List<TourOperatorService> services}) {
-    return _Data(
+  Data data({required List<TourOperatorService> services}) {
+    return Data(
       services: services,
     );
   }
@@ -48,13 +48,13 @@ mixin _$TourOperatorState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Data value) data,
+    required TResult Function(Data value) data,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Data value)? data,
+    TResult Function(Data value)? data,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -136,7 +136,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Data value) data,
+    required TResult Function(Data value) data,
   }) {
     return loading(this);
   }
@@ -145,7 +145,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Data value)? data,
+    TResult Function(Data value)? data,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -160,26 +160,26 @@ abstract class _Loading implements TourOperatorState {
 }
 
 /// @nodoc
-abstract class _$DataCopyWith<$Res> {
-  factory _$DataCopyWith(_Data value, $Res Function(_Data) then) =
-      __$DataCopyWithImpl<$Res>;
+abstract class $DataCopyWith<$Res> {
+  factory $DataCopyWith(Data value, $Res Function(Data) then) =
+      _$DataCopyWithImpl<$Res>;
   $Res call({List<TourOperatorService> services});
 }
 
 /// @nodoc
-class __$DataCopyWithImpl<$Res> extends _$TourOperatorStateCopyWithImpl<$Res>
-    implements _$DataCopyWith<$Res> {
-  __$DataCopyWithImpl(_Data _value, $Res Function(_Data) _then)
-      : super(_value, (v) => _then(v as _Data));
+class _$DataCopyWithImpl<$Res> extends _$TourOperatorStateCopyWithImpl<$Res>
+    implements $DataCopyWith<$Res> {
+  _$DataCopyWithImpl(Data _value, $Res Function(Data) _then)
+      : super(_value, (v) => _then(v as Data));
 
   @override
-  _Data get _value => super._value as _Data;
+  Data get _value => super._value as Data;
 
   @override
   $Res call({
     Object? services = freezed,
   }) {
-    return _then(_Data(
+    return _then(Data(
       services: services == freezed
           ? _value.services
           : services // ignore: cast_nullable_to_non_nullable
@@ -189,8 +189,8 @@ class __$DataCopyWithImpl<$Res> extends _$TourOperatorStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$_Data implements _Data {
-  const _$_Data({required this.services});
+class _$Data implements Data {
+  const _$Data({required this.services});
 
   @override
   final List<TourOperatorService> services;
@@ -203,7 +203,7 @@ class _$_Data implements _Data {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Data &&
+        (other is Data &&
             (identical(other.services, services) ||
                 const DeepCollectionEquality()
                     .equals(other.services, services)));
@@ -215,8 +215,8 @@ class _$_Data implements _Data {
 
   @JsonKey(ignore: true)
   @override
-  _$DataCopyWith<_Data> get copyWith =>
-      __$DataCopyWithImpl<_Data>(this, _$identity);
+  $DataCopyWith<Data> get copyWith =>
+      _$DataCopyWithImpl<Data>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -244,7 +244,7 @@ class _$_Data implements _Data {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Data value) data,
+    required TResult Function(Data value) data,
   }) {
     return data(this);
   }
@@ -253,7 +253,7 @@ class _$_Data implements _Data {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Data value)? data,
+    TResult Function(Data value)? data,
     required TResult orElse(),
   }) {
     if (data != null) {
@@ -263,10 +263,10 @@ class _$_Data implements _Data {
   }
 }
 
-abstract class _Data implements TourOperatorState {
-  const factory _Data({required List<TourOperatorService> services}) = _$_Data;
+abstract class Data implements TourOperatorState {
+  const factory Data({required List<TourOperatorService> services}) = _$Data;
 
   List<TourOperatorService> get services => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$DataCopyWith<_Data> get copyWith => throw _privateConstructorUsedError;
+  $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
 }

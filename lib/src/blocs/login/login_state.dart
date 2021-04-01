@@ -8,5 +8,6 @@ class LoginState with _$LoginState {
       {required String email,
       required String password,
       String? emailError,
-      String? passwordError}) = _LoginState;
+      String? passwordError,
+      required bool hasSubmitted}) = _LoginState;
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tour_me/src/blocs/auth/auth_bloc.dart';
 import 'package:tour_me/src/blocs/auth/auth_state.dart';
@@ -11,12 +13,26 @@ class TourOperatorBloc extends StateNotifier<TourOperatorState> {
   final TourOperatorRepository tourOperatorRepository;
   final AuthRepository authRepo;
   final AuthState authState;
+  late final StreamSubscription<List<TourOperatorService>> _subscription;
 
   TourOperatorBloc(
       {required this.tourOperatorRepository,
       required this.authRepo,
       required this.authState})
-      : super(TourOperatorState.loading());
+      : super(TourOperatorState.loading()) {
+    _subscription = tourOperatorRepository
+        .watchAllServicesByOperator(
+            tourOperatorId: (authState as Authenticated).user.id)
+        .listen((event) {
+      state = TourOperatorState.data(services: event);
+    });
+  }
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
+  }
 
   void logoutButtonPressed() {
     authRepo.logout();
@@ -25,17 +41,16 @@ class TourOperatorBloc extends StateNotifier<TourOperatorState> {
   void addServiceButtonPressed(String? serviceName) async {
     if (serviceName != null) {
       final newService = TourOperatorService(
-          id: 9,
-          tourOperatorId: (authState as Authenticated).user.userId,
-          name: serviceName);
-      await tourOperatorRepository.addServiceToOperator(newService);
+        name: serviceName,
+      );
+      await tourOperatorRepository.addServiceToOperator(
+          newService, (authState as Authenticated).user.id);
     }
   }
 
-  void getAllServicesByOperator({required String email}) async {
-    final operatorServices =
-        await tourOperatorRepository.getAllServicesByOperator(email: email);
-    state = TourOperatorState.data(services: operatorServices);
+  void removeServiceButtonPressed(TourOperatorService service) async {
+    await tourOperatorRepository.removeServiceFromOperator(
+        service, (authState as Authenticated).user.id);
   }
 }
 

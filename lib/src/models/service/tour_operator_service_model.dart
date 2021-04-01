@@ -7,10 +7,7 @@ part 'tour_operator_service_model.g.dart';
 class TourOperatorService with _$TourOperatorService {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory TourOperatorService({
+    String? id,
     required String name,
-    required int freeSpots,
   }) = _TourOperatorService;
-
-  factory TourOperatorService.fromJson(Map<String, dynamic> json) =>
-      _$TourOperatorServiceFromJson(json);
 }

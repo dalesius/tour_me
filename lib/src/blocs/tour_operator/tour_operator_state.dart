@@ -9,5 +9,5 @@ class TourOperatorState with _$TourOperatorState {
   const factory TourOperatorState.loading() = _Loading;
   const factory TourOperatorState.data({
     required List<TourOperatorService> services,
-  }) = _Data;
+  }) = Data;
 }

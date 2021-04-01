@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yeet/yeet.dart';
 
 import '../blocs/auth/auth_bloc.dart';
 import '../ui/landing_view.dart';
-import '../ui/login_view.dart';
-import '../ui/register_view.dart';
+import '../ui/tour_operator/tour_operator_service_detail_view.dart';
 import '../ui/tour_operator/tour_operator_services_view.dart';
 
 final routeProvider = Provider<Yeet>((ref) {
@@ -17,10 +17,10 @@ final routeProvider = Provider<Yeet>((ref) {
 
 final publicRoutes = Yeet(
   children: [
-    Yeet(path: '/', builder: (_, __) => LandingView(), children: [
-      Yeet(path: '/register', builder: (_, __) => RegisterView()),
-      Yeet(path: '/login', builder: (_, __) => LoginView()),
-    ]),
+    Yeet(
+      path: '/',
+      builder: (_, __) => LandingView(),
+    ),
   ],
 );
 
@@ -29,6 +29,19 @@ final privateRoutes = Yeet(
     Yeet(
       path: '/',
       builder: (_, __) => TourOperatorServicesView(),
+      children: [
+        Yeet.custom(
+          path: '/services/:id',
+          builder: (params, __) => ServiceDetailsView(id: params['id']!),
+          opaque: false,
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+        ),
+      ],
     ),
   ],
 );

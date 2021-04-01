@@ -91,8 +91,8 @@ class TourOperatorServicesList extends StatelessWidget {
       child: Column(
         children: servicesList
             .map((service) => ListTile(
-                  leading: Text('ID: ${service.id}'),
                   title: Text('${service.name}'),
+                  trailing: Text('Free spots: '),
                 ))
             .toList(),
       ),

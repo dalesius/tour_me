@@ -10,11 +10,12 @@ class ServiceRepository {
 
   Future<List<TourOperatorService>> fetchServicesByTourOperator(
       {required int tourOperatorId}) async {
-    final result = await serviceApi.fetchServicesByTourOperator(
-        tourOperatorId: tourOperatorId);
-    return result
-        .map((service) => TourOperatorService.fromJson(service))
-        .toList();
+    throw UnimplementedError();
+    // final result = await serviceApi.fetchServicesByTourOperator(
+    //     tourOperatorId: tourOperatorId);
+    // return result
+    //     .map((service) => )
+    //     .toList();
   }
 }
 

@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tour_me/src/models/api/database_failure.dart';
-import 'package:tour_me/src/models/service/tour_operator_service_model.dart';
-import 'package:tour_me/src/models/tour_operator/tour_operator_model.dart';
-import 'package:tour_me/src/services/api/tour_operator_api.dart';
+
+import '../models/api/database_failure.dart';
+import '../models/service/tour_operator_service_model.dart';
+import '../services/api/tour_operator_api.dart';
 
 class TourOperatorRepository {
   final FirebaseFirestore tourOperatorApi;
@@ -17,14 +16,13 @@ class TourOperatorRepository {
   // }
 
   Future<Either<DBFailure, Unit>> addServiceToOperator(
-      TourOperatorService newService) async {
+      TourOperatorService newService, String tourOperatorId) async {
     try {
-      tourOperatorApi
+      await tourOperatorApi
           .collection('tour_operators')
-          .doc()
+          .doc(tourOperatorId)
           .collection('services')
-          .add(newService.toJson());
-      // await tourOperatorApi.addServiceToOperator(newService.toJson());
+          .add({"name": newService.name});
       return right(unit);
     } catch (_) {
       return left(
@@ -32,12 +30,56 @@ class TourOperatorRepository {
     }
   }
 
+  Future<Either<DBFailure, Unit>> removeServiceFromOperator(
+      TourOperatorService service, String tourOperatorId) async {
+    try {
+      await tourOperatorApi
+          .collection('tour_operators')
+          .doc(tourOperatorId)
+          .collection('services')
+          .doc(service.id)
+          .delete();
+
+      return right(unit);
+    } catch (_) {
+      return left(
+          DBFailure.generalDBFailure('Error while trying to remove service.'));
+    }
+  }
+
   Future<List<TourOperatorService>> getAllServicesByOperator(
-      {required String email}) async {
-    final result = await tourOperatorApi.getAllServicesByOperator(email: email);
-    return result
-        .map((service) => TourOperatorService.fromJson(service))
-        .toList();
+      {required String tourOperatorId}) async {
+    final result = await tourOperatorApi
+        .collection('tour_operators')
+        .doc(tourOperatorId)
+        .collection('services')
+        .get();
+
+    return result.docs.map((firestoreService) {
+      final jsonService = firestoreService.data()!;
+      return TourOperatorService(
+        id: firestoreService.id,
+        name: jsonService['name'],
+      );
+    }).toList();
+  }
+
+  Stream<List<TourOperatorService>> watchAllServicesByOperator(
+      {required String tourOperatorId}) {
+    final result = tourOperatorApi
+        .collection('tour_operators')
+        .doc(tourOperatorId)
+        .collection('services')
+        .snapshots();
+
+    return result.map((event) => event.docs.map((firestoreService) {
+          final jsonService = firestoreService.data()!;
+          print(jsonService);
+          return TourOperatorService(
+            id: firestoreService.id,
+            name: jsonService['name'],
+          );
+        }).toList());
   }
 }
 
