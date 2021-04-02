@@ -50,6 +50,7 @@ class LandingView extends HookWidget {
                     onChanged: (value) {
                       loginBlocProvider.passwordChanged(value);
                     },
+                    obscureText: true,
                     decoration: InputDecoration(
                       errorText: loginState.passwordError,
                       hintText: 'Please enter your password',

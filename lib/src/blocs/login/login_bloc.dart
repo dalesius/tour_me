@@ -39,8 +39,7 @@ class LoginBloc extends StateNotifier<LoginState> {
   }
 
   void registerButtonPressed() async {
-    final result = await authRepository.login(
-        email: state.email, password: state.password);
+    final result = await authRepository.register(state.email, state.password);
 
     result.fold(
       (failure) {
